@@ -180,8 +180,8 @@ let animationId
 let score = 0
 
 var space = 30
-for(var i=10; i<canvas.width; i+=space){
-    for(var j=10; j<canvas.height; j+=space){
+for(var i=15; i<canvas.width; i+=space){
+    for(var j=15; j<canvas.height; j+=space){
         bgs.push(new Bg(
             i, j, 3, 'rgba(0,0,231, 0.2)'
         ))
