@@ -218,8 +218,8 @@ function spawnEnemies() {
         enemies.push(new Enemy(
             ex, ey, radius, color,
             {
-                x: Math.cos(angle)*1.5,
-                y: Math.sin(angle)*1.5
+                x: Math.cos(angle)*(canvas.width>=740?1.5:2.5),
+                y: Math.sin(angle)*(canvas.width>=740?1.5:2.5)
             }
         ))
     }, 1000)
@@ -319,8 +319,8 @@ window.addEventListener('click', (event)=> {
     projectiles.push(new Projectile(
         player.x, player.y, 5, 'white', 
         {
-            x: Math.cos(angle),
-            y: Math.sin(angle)
+            x: Math.cos(angle)*(canvas.width>=740?1:2),
+            y: Math.sin(angle)*(canvas.width>=740?1:2)
         }
     ))
 })
