@@ -170,7 +170,7 @@ let playerVelocity = {
     x: 70,
     y: 70
 }
-let player = new Player(x, y, canvas.width>=740?15:10, 'white', playerVelocity)
+let player = new Player(x, y, canvas.width>=740?10:10, 'white', playerVelocity)
 console.log(player)
 let projectiles = []
 let enemies = []
@@ -180,10 +180,11 @@ let animationId
 let score = 0
 
 var space = 30
+var bgColor = Math.random()*360
 for(var i=15; i<canvas.width; i+=space){
     for(var j=15; j<canvas.height; j+=space){
         bgs.push(new Bg(
-            i, j, 3, 'rgba(0,0,231, 0.2)'
+            i, j, 3, `hsl(${bgColor}, 50%, 50%)`
         ))
     }
 }
@@ -192,7 +193,7 @@ function init() {
     score = 0
     scoreEl.innerHTML = `Score: ${score}`
     totalScore.innerHTML = score
-    player = new Player(x, y, canvas.width>=740?15:10, 'white', playerVelocity)
+    player = new Player(x, y, canvas.width>=740?10:10, 'white', playerVelocity)
     projectiles = []
     enemies = []
     particles = []
@@ -226,16 +227,17 @@ function spawnEnemies() {
 }
 
 function animate() {
+    bgColor = bgColor+1>360 ? bgColor-360 : bgColor+1
     bgs.forEach((bg)=>{
         var dist = Math.hypot(player.x - bg.x, player.y - bg.y)
-        if(dist < 80) {
+        if(dist < 60) {
             bg.color = 'rgba(0, 0, 0, 0)';
         }
         else if(dist < 110) {
-            bg.color = 'rgba(0,0,231, 1)';
+            bg.color = `hsl(${bgColor}, 100%, 50%)`;
         }
         else {
-            bg.color = 'rgba(0,0,231, 0.05)';
+            bg.color = `hsl(${bgColor}, 50%, 10%)`;
         }
         bg.update()
     })
