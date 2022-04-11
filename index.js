@@ -170,7 +170,7 @@ let playerVelocity = {
     x: 70,
     y: 70
 }
-let player = new Player(x, y, 15, 'white', playerVelocity)
+let player = new Player(x, y, canvas.width>=740?15:10, 'white', playerVelocity)
 console.log(player)
 let projectiles = []
 let enemies = []
@@ -180,8 +180,8 @@ let animationId
 let score = 0
 
 var space = 30
-for(var i=0; i<canvas.width; i+=space){
-    for(var j=0; j<canvas.height; j+=space){
+for(var i=10; i<canvas.width; i+=space){
+    for(var j=10; j<canvas.height; j+=space){
         bgs.push(new Bg(
             i, j, 3, 'rgba(0,0,231, 0.2)'
         ))
@@ -192,7 +192,7 @@ function init() {
     score = 0
     scoreEl.innerHTML = `Score: ${score}`
     totalScore.innerHTML = score
-    player = new Player(x, y, 15, 'white', playerVelocity)
+    player = new Player(x, y, canvas.width>=740?15:10, 'white', playerVelocity)
     projectiles = []
     enemies = []
     particles = []
@@ -222,7 +222,7 @@ function spawnEnemies() {
                 y: Math.sin(angle)*1.5
             }
         ))
-    }, canvas.width>739?1000:2000)
+    }, 1000)
 }
 
 function animate() {
